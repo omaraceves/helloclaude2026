@@ -38,7 +38,8 @@ jobs:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
           show_full_output: true 
-          prompt: '/code-review'
+          display_report: true        # ← surfaces findings in the check summary
+          prompt: '/code-review --comment'  # ← posts findings as inline PR comments
           # See https://github.com/anthropics/claude-code-action/blob/main/docs/usage.md
           # or https://code.claude.com/docs/en/cli-reference for available options
 
