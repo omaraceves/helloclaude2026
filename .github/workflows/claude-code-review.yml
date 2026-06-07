@@ -39,7 +39,14 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           show_full_output: true 
           display_report: true        # ← surfaces findings in the check summary
-          prompt: '/code-review --comment'  # ← posts findings as inline PR comments
+          prompt: |
+            REPO: ${{ github.repository }}
+            PR NUMBER: ${{ github.event.pull_request.number }}
+
+            Review the diff for correctness, security, and bugs.
+            Post inline comments on specific lines, then a one-paragraph
+            summary as a top-level PR comment.
+          allowedTools "mcp__github_inline_comment__create_inline_comment,Bash(gh pr comment:*),Bash(gh pr diff:*),Bash(gh pr view:*)"
           # See https://github.com/anthropics/claude-code-action/blob/main/docs/usage.md
           # or https://code.claude.com/docs/en/cli-reference for available options
 
